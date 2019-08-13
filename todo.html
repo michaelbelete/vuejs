@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/vue.js"></script>
+</head>
+<body style="background: #efeeee;">
+        <div class="navbar navbar-dark bg-dark box-shadow">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>Todo List</strong>
+                </a>
+            </div>
+        </div>
+<center>
+    <br>
+<div id="todo">
+    <div class="col-md-1"></div>
+     <div class="col-md-5">
+         <div class="card">
+             <div class="card-header">
+                 Add Todo List
+             </div>
+             <div class="card-body">
+                 <div class="form-group">
+                    <div class="col col-md-12">
+                        <div class="input-group">
+                            <input type="text" v-model="newTask" placeholder="Enter a task" class="form-control">
+                            <div class="input-group-addon">
+                                <button class="btn btn-info" v-on:click="addTask" :disabled="newTask.length < 2"><b>+ Add</b></button>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <br>
+     <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    Tasks
+                </div>
+                <div class="card-body">
+                    <h4 v-for="task in tasks">{{task}}<hr></h3>
+                </div>
+            </div>
+        </div>
+</div>
+</center>
+</body>
+</html>
+<script>
+new Vue({
+    el:"#todo",
+    data:{
+        tasks:[],
+        newTask: ''
+    },
+    methods:{
+        addTask:function(){
+            return this.tasks.push(this.newTask)
+            this.newTask = ''
+        }
+    },
+    filters:{
+        upperCase:function(value){
+            return value.toUpperCase()
+        }
+    }
+});
+</script>
